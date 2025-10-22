@@ -7,8 +7,9 @@ namespace AbacatePay\Billing\Request;
 use AbacatePay\Billing\Enum\AbacatePayBillingFrequencyEnum;
 use AbacatePay\Billing\Enum\AbacatePayBillingMethodEnum;
 use AbacatePay\Customer\Request\CustomerRequest;
+use JsonSerializable;
 
-final readonly class CreateBillingRequest
+final readonly class CreateBillingRequest implements JsonSerializable
 {
     /**
      * @param  AbacatePayBillingMethodEnum[]  $methods
@@ -25,10 +26,9 @@ final readonly class CreateBillingRequest
         public ?CustomerRequest $customer,
         public bool $allow_coupons,
         public array $coupons,
-        public ?string $external_id,
     ) {}
 
-    public function toArray(): array
+    public function jsonSerialize(): array
     {
         $data = [
             'frequency' => $this->frequency,
@@ -49,10 +49,6 @@ final readonly class CreateBillingRequest
 
         if ($this->customer !== null) {
             $data['customer'] = $this->customer->toArray();
-        }
-
-        if ($this->external_id !== null) {
-            $data['externalId'] = $this->external_id;
         }
 
         return $data;

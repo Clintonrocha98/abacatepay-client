@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AbacatePay\Customer\Entities;
+namespace AbacatePay\Customer\Request;
 
-final readonly class CreateCustomerRequest
+use JsonSerializable;
+
+final readonly class CreateCustomerRequest implements JsonSerializable
 {
     public function __construct(
         public string $name,
@@ -13,13 +15,13 @@ final readonly class CreateCustomerRequest
         public string $tax_id,
     ) {}
 
-    public function toArray(): array
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,
             'cellphone' => $this->cellphone,
             'email' => $this->email,
-            'taxId' => $this->tax_id,
+            'tax_id' => $this->tax_id,
         ];
     }
 }

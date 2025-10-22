@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AbacatePay\Customer\Entities;
+namespace AbacatePay\Customer\Response;
+
+use AbacatePay\Customer\Entities\CustomerEntity;
 
 final readonly class CreateCustomerResponse
 {

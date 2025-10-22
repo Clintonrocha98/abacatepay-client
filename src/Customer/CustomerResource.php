@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AbacatePay\Customer;
 
-use AbacatePay\Customer\Entities\CreateCustomerRequest;
-use AbacatePay\Customer\Entities\CreateCustomerResponse;
 use AbacatePay\Customer\Entities\CustomerEntityCollection;
+use AbacatePay\Customer\Request\CreateCustomerRequest;
+use AbacatePay\Customer\Response\CreateCustomerResponse;
 use AbacatePay\Exception\AbacatePayException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -29,7 +29,7 @@ final class CustomerResource
     {
         try {
             $response = $this->client->post(self::BASE_URI.'/create', [
-                'json' => $request->toArray(),
+                'json' => $request->jsonSerialize(),
             ]);
 
             $responsePayload = json_decode(

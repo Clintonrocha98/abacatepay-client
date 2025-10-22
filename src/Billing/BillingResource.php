@@ -26,7 +26,7 @@ final class BillingResource
     {
         try {
             $response = $this->client->post(self::BASE_URI.'/create', [
-                'json' => $request->toArray(),
+                'json' => $request->jsonSerialize(),
             ]);
 
             $responsePayload = json_decode(
