@@ -1,16 +1,17 @@
 <?php
 
-namespace AbacatePay\Billing\Entities;
+declare(strict_types=1);
 
-final readonly class CustomerRequest
+namespace AbacatePay\Customer\Request;
+
+final readonly class CustomerMetadata
 {
     public function __construct(
         public string $name,
         public string $cellphone,
         public string $email,
-        public string $taxId,
-    ) {
-    }
+        public string $tax_id,
+    ) {}
 
     public function toArray(): array
     {
@@ -18,7 +19,7 @@ final readonly class CustomerRequest
             'name' => $this->name,
             'cellphone' => $this->cellphone,
             'email' => $this->email,
-            'taxId' => $this->taxId,
+            'taxId' => $this->tax_id,
         ];
     }
 }

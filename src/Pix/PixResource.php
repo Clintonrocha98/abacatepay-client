@@ -9,12 +9,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class PixResource
 {
-    public const string BASE_URI = "https://api.abacatepay.com/v1/pixQrCode";
+    public const string BASE_URI = 'https://api.abacatepay.com/v1/pixQrCode';
 
     public function __construct(
         private readonly Client $client,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws AbacatePayException
@@ -23,7 +22,7 @@ final class PixResource
     public function createQrCode(CreatePixQrCodeRequest $request): CreatePixQrCodeResponse
     {
         try {
-            $response = $this->client->post(self::BASE_URI."/create", [
+            $response = $this->client->post(self::BASE_URI.'/create', [
                 'json' => $request->toArray(),
             ]);
 

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace AbacatePay\Customer\Entities;
@@ -7,7 +8,7 @@ use ArrayIterator;
 use Countable;
 use IteratorAggregate;
 
-class CustomerEntityCollection implements IteratorAggregate, Countable
+class CustomerEntityCollection implements Countable, IteratorAggregate
 {
     /** @var CustomerEntity[] */
     private array $items;
@@ -45,7 +46,7 @@ class CustomerEntityCollection implements IteratorAggregate, Countable
 
     public static function fromArray(array $data): self
     {
-        $collection = new self();
+        $collection = new self;
 
         foreach ($data as $item) {
             $collection->add(CustomerEntity::fromArray($item));

@@ -12,8 +12,7 @@ final readonly class CreatePixQrCodeRequest
         public string $description,
         public PixCustomerRequest $customer,
         public PixMetadataRequest $metadata,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

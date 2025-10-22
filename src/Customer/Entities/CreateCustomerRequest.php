@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace AbacatePay\Customer\Entities;
 
 final readonly class CreateCustomerRequest
@@ -9,8 +11,7 @@ final readonly class CreateCustomerRequest
         public string $cellphone,
         public string $email,
         public string $tax_id,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

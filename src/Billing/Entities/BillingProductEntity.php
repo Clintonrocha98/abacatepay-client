@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace AbacatePay\Billing\Entities;
@@ -11,8 +12,7 @@ final readonly class BillingProductEntity implements JsonSerializable
         public string $id,
         public string $external_id,
         public int $quantity,
-    ) {
-    }
+    ) {}
 
     public static function fromArray(array $data): self
     {

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace AbacatePay\Customer\Entities;
@@ -13,8 +14,7 @@ final readonly class CustomerEntity implements JsonSerializable
         public string $cellphone,
         public string $email,
         public string $tax_id,
-    ) {
-    }
+    ) {}
 
     public static function fromArray(array $data): self
     {
@@ -34,7 +34,7 @@ final readonly class CustomerEntity implements JsonSerializable
             'name' => $this->name,
             'cellphone' => $this->cellphone,
             'email' => $this->email,
-            'taxId' => $this->tax_id
+            'taxId' => $this->tax_id,
         ];
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace AbacatePay\Billing\Entities;
@@ -26,8 +27,7 @@ final readonly class BillingEntity implements JsonSerializable
         public CustomerEntity $customer,
         public bool $allow_coupons,
         public array $coupons,
-    ) {
-    }
+    ) {}
 
     public static function fromArray(array $data): self
     {
@@ -39,7 +39,7 @@ final readonly class BillingEntity implements JsonSerializable
             dev_mode: $data['devMode'],
             methods: $data['methods'],
             products: array_map(
-                fn(array $product) => BillingProductEntity::fromArray($product),
+                fn (array $product) => BillingProductEntity::fromArray($product),
                 $data['products']
             ),
             frequency: $data['frequency'],
@@ -60,7 +60,7 @@ final readonly class BillingEntity implements JsonSerializable
             'dev_mode' => $this->dev_mode,
             'methods' => $this->methods,
             'products' => array_map(
-                fn(BillingProductEntity $product) => $product->jsonSerialize(),
+                fn (BillingProductEntity $product) => $product->jsonSerialize(),
                 $this->products
             ),
             'frequency' => $this->frequency,
