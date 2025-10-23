@@ -1,27 +1,24 @@
 <?php
 
-declare(strict_types=1);
+namespace AbacatePay\Pix\Http\Request;
 
-namespace AbacatePay\Customer\Request;
-
-final readonly class CustomerRequest
+final readonly class PixCustomerRequest
 {
     public function __construct(
-        public string $id,
         public string $name,
         public string $cellphone,
         public string $email,
-        public string $tax_id,
-    ) {}
+        public string $taxId,
+    ) {
+    }
 
     public function toArray(): array
     {
         return [
-            'id' => $this->id,
             'name' => $this->name,
             'cellphone' => $this->cellphone,
             'email' => $this->email,
-            'taxId' => $this->tax_id,
+            'taxId' => $this->taxId,
         ];
     }
 }

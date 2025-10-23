@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AbacatePay\Billing\Request;
+namespace AbacatePay\Billing\Http\Request;
 
 use AbacatePay\Billing\Enum\AbacatePayBillingFrequencyEnum;
 use AbacatePay\Billing\Enum\AbacatePayBillingMethodEnum;
-use AbacatePay\Customer\Request\CustomerRequest;
+use AbacatePay\Customer\Http\Request\CustomerRequest;
 use JsonSerializable;
 
 final readonly class CreateBillingRequest implements JsonSerializable

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AbacatePay\Customer\Response;
+namespace AbacatePay\Customer\Http\Response;
 
 use AbacatePay\Customer\Entities\CustomerEntity;
 

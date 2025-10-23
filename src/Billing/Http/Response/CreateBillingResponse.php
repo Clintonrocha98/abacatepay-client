@@ -1,6 +1,6 @@
 <?php
 
-namespace AbacatePay\Billing\Response;
+namespace AbacatePay\Billing\Http\Response;
 
 use AbacatePay\Billing\Entities\BillingEntity;
 

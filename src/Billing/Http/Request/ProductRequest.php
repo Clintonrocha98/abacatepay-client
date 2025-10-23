@@ -1,6 +1,6 @@
 <?php
 
-namespace AbacatePay\Billing\Request;
+namespace AbacatePay\Billing\Http\Request;
 
 final readonly class ProductRequest
 {

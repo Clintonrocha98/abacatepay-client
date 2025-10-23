@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use AbacatePay\Billing\Request\CreateBillingRequest;
-use AbacatePay\Billing\Response\CreateBillingResponse;
-use AbacatePay\Billing\Response\ListBillingResponse;
+use AbacatePay\Billing\Http\Request\CreateBillingRequest;
+use AbacatePay\Billing\Http\Response\CreateBillingResponse;
+use AbacatePay\Billing\Http\Response\ListBillingResponse;
 use AbacatePay\Exception\AbacatePayException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -12,11 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class BillingResource
 {
-    public const string BASE_URI = 'https://api.abacatepay.com/v1/billing';
+    private const string BASE_PATH = '/billing';
 
     public function __construct(
         private readonly Client $client,
-    ) {}
+    ) {
+    }
 
     /**
      * @throws AbacatePayException
@@ -25,7 +26,7 @@ final class BillingResource
     public function create(CreateBillingRequest $request): CreateBillingResponse
     {
         try {
-            $response = $this->client->post(self::BASE_URI.'/create', [
+            $response = $this->client->post(sprintf("%s/create", self::BASE_PATH), [
                 'json' => $request->jsonSerialize(),
             ]);
 
@@ -52,7 +53,7 @@ final class BillingResource
     public function list(): ListBillingResponse
     {
         try {
-            $response = $this->client->get(self::BASE_URI.'/list');
+            $response = $this->client->get(sprintf("%s/list", self::BASE_PATH));
 
             $responsePayload = json_decode(
                 $response->getBody()->getContents(),

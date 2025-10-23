@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AbacatePay\Customer\Request;
+namespace AbacatePay\Customer\Http\Request;
 
 use JsonSerializable;
 
