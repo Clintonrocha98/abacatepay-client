@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AbacatePay\Pix\Http\Request;
 
 final readonly class CreatePixQrCodeRequest
@@ -10,7 +12,8 @@ final readonly class CreatePixQrCodeRequest
         public string $description,
         public PixCustomerRequest $customer,
         public PixMetadataRequest $metadata,
-    ) {}
+    ) {
+    }
 
     public function toArray(): array
     {

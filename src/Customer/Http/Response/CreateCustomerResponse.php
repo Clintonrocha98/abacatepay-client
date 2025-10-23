@@ -10,7 +10,8 @@ final readonly class CreateCustomerResponse
 {
     public function __construct(
         public CustomerEntity $data,
-    ) {}
+    ) {
+    }
 
     public static function fromArray(array $data): self
     {

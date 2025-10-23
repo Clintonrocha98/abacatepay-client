@@ -46,7 +46,7 @@ class CustomerEntityCollection implements Countable, IteratorAggregate
 
     public static function fromArray(array $data): self
     {
-        $collection = new self;
+        $collection = new self();
 
         foreach ($data as $item) {
             $collection->add(CustomerEntity::fromArray($item));

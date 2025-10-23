@@ -47,7 +47,7 @@ final class BillingEntityCollection implements Countable, IteratorAggregate
 
     public static function fromArray(array $data): self
     {
-        $collection = new self;
+        $collection = new self();
 
         foreach ($data as $item) {
             $collection->add(BillingEntity::fromArray($item));

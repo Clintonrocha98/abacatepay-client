@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AbacatePay\Billing\Http\Request;
 
 final readonly class ProductRequest
@@ -10,7 +12,8 @@ final readonly class ProductRequest
         public string $description,
         public int $quantity,
         public int $price,
-    ) {}
+    ) {
+    }
 
     public function toArray(): array
     {

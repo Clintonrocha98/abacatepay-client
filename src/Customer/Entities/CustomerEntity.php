@@ -14,7 +14,8 @@ final readonly class CustomerEntity implements JsonSerializable
         public string $cellphone,
         public string $email,
         public string $tax_id,
-    ) {}
+    ) {
+    }
 
     public static function fromArray(array $data): self
     {

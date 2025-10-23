@@ -10,12 +10,12 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\HttpFoundation\Response;
 
-final class BillingResource
+final readonly class BillingResource
 {
     private const string BASE_PATH = '/billing';
 
     public function __construct(
-        private readonly Client $client,
+        private Client $client,
     ) {
     }
 
@@ -26,7 +26,7 @@ final class BillingResource
     public function create(CreateBillingRequest $request): CreateBillingResponse
     {
         try {
-            $response = $this->client->post(sprintf("%s/create", self::BASE_PATH), [
+            $response = $this->client->post(sprintf('%s/create', self::BASE_PATH), [
                 'json' => $request->jsonSerialize(),
             ]);
 
@@ -53,7 +53,7 @@ final class BillingResource
     public function list(): ListBillingResponse
     {
         try {
-            $response = $this->client->get(sprintf("%s/list", self::BASE_PATH));
+            $response = $this->client->get(sprintf('%s/list', self::BASE_PATH));
 
             $responsePayload = json_decode(
                 $response->getBody()->getContents(),

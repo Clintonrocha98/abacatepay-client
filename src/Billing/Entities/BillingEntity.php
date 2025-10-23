@@ -27,10 +27,11 @@ final readonly class BillingEntity implements JsonSerializable
         public array $products,
         public AbacatePayBillingFrequencyEnum $frequency,
         public ?string $next_billing,
-        public CustomerEntity $customer,
-        public bool $allow_coupons,
+        public ?CustomerEntity $customer,
+        public ?bool $allow_coupons,
         public array $coupons,
-    ) {}
+    ) {
+    }
 
     public static function fromArray(array $data): self
     {
@@ -41,18 +42,22 @@ final readonly class BillingEntity implements JsonSerializable
             status: AbacatePayBillingStatusEnum::from($data['status']),
             dev_mode: $data['devMode'],
             methods: array_map(
-                fn ($method) => AbacatePayBillingMethodEnum::from($method),
-                $data['methods']
+                AbacatePayBillingMethodEnum::from(...),
+                $data['methods'] ?? []
             ),
             products: array_map(
-                fn (array $product) => BillingProductEntity::fromArray($product),
-                $data['products']
+                BillingProductEntity::fromArray(...),
+                $data['products'] ?? []
             ),
             frequency: AbacatePayBillingFrequencyEnum::from($data['frequency']),
-            next_billing: $data['nextBilling'],
-            customer: CustomerEntity::fromArray($data['customer']),
-            allow_coupons: $data['allowCoupons'],
-            coupons: $data['coupons'],
+            next_billing: isset($data['nextBilling']) && $data['nextBilling'] !== 'null'
+                ? $data['nextBilling']
+                : null,
+            customer: isset($data['customer'])
+                ? CustomerEntity::fromArray($data['customer'])
+                : null,
+            allow_coupons: $data['allowCoupons'] ?? null,
+            coupons: $data['coupons'] ?? []
         );
     }
 
@@ -64,9 +69,9 @@ final readonly class BillingEntity implements JsonSerializable
             'amount' => $this->amount,
             'status' => $this->status->value,
             'devMode' => $this->dev_mode,
-            'methods' => array_map(fn ($m) => $m->value, $this->methods),
+            'methods' => array_map(fn (AbacatePayBillingMethodEnum $method) => $method->value, $this->methods),
             'products' => array_map(
-                fn (BillingProductEntity $product) => $product->jsonSerialize(),
+                fn (BillingProductEntity $product): array => $product->jsonSerialize(),
                 $this->products
             ),
             'frequency' => $this->frequency->value,

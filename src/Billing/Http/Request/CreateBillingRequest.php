@@ -26,7 +26,9 @@ final readonly class CreateBillingRequest implements JsonSerializable
         public ?CustomerRequest $customer,
         public bool $allow_coupons,
         public array $coupons,
-    ) {}
+        public ?string $external_id
+    ) {
+    }
 
     public function jsonSerialize(): array
     {
@@ -34,7 +36,7 @@ final readonly class CreateBillingRequest implements JsonSerializable
             'frequency' => $this->frequency,
             'methods' => $this->methods,
             'products' => array_map(
-                fn (ProductRequest $product) => $product->toArray(),
+                fn (ProductRequest $product): array => $product->toArray(),
                 $this->products
             ),
             'returnUrl' => $this->return_url,
@@ -47,8 +49,12 @@ final readonly class CreateBillingRequest implements JsonSerializable
             $data['customerId'] = $this->customer_id;
         }
 
-        if ($this->customer !== null) {
+        if ($this->customer instanceof CustomerRequest) {
             $data['customer'] = $this->customer->toArray();
+        }
+
+        if ($this->external_id !== null) {
+            $data['externalId'] = $this->external_id;
         }
 
         return $data;

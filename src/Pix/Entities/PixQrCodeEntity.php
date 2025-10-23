@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Entities;
 
 use DateTimeImmutable;
@@ -18,7 +20,8 @@ final readonly class PixQrCodeEntity implements JsonSerializable
         public DateTimeImmutable $created_at,
         public DateTimeImmutable $updated_at,
         public DateTimeImmutable $expires_at,
-    ) {}
+    ) {
+    }
 
     public static function fromArray(array $data): self
     {
