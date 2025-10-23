@@ -7,9 +7,8 @@ namespace AbacatePay\Billing\Http\Request;
 use AbacatePay\Billing\Enum\AbacatePayBillingFrequencyEnum;
 use AbacatePay\Billing\Enum\AbacatePayBillingMethodEnum;
 use AbacatePay\Customer\Http\Request\CustomerRequest;
-use JsonSerializable;
 
-final readonly class CreateBillingRequest implements JsonSerializable
+final readonly class CreateBillingRequest
 {
     /**
      * @param  AbacatePayBillingMethodEnum[]  $methods
@@ -30,7 +29,7 @@ final readonly class CreateBillingRequest implements JsonSerializable
     ) {
     }
 
-    public function jsonSerialize(): array
+    public function toArray(): array
     {
         $data = [
             'frequency' => $this->frequency,

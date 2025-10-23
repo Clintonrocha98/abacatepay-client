@@ -76,7 +76,7 @@ final readonly class BillingEntity implements JsonSerializable
             ),
             'frequency' => $this->frequency->value,
             'nextBilling' => $this->next_billing,
-            'customer' => $this->customer->jsonSerialize(),
+            'customer' => $this->customer?->jsonSerialize(),
             'allowCoupons' => $this->allow_coupons,
             'coupons' => $this->coupons,
         ];

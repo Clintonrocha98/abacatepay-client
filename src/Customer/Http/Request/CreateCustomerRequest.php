@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace AbacatePay\Customer\Http\Request;
 
-use JsonSerializable;
-
-final readonly class CreateCustomerRequest implements JsonSerializable
+final readonly class CreateCustomerRequest
 {
     public function __construct(
         public string $name,
@@ -16,7 +14,7 @@ final readonly class CreateCustomerRequest implements JsonSerializable
     ) {
     }
 
-    public function jsonSerialize(): array
+    public function toArray(): array
     {
         return [
             'name' => $this->name,
