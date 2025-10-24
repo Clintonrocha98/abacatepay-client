@@ -21,7 +21,7 @@ final readonly class CreateCustomerRequest
             'name' => $this->name,
             'cellphone' => $this->cellphone,
             'email' => $this->email,
-            'tax_id' => $this->taxId,
+            'taxId' => $this->taxId,
         ];
     }
 }

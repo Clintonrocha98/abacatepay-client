@@ -14,7 +14,7 @@ final readonly class AbacatePayClient
 {
     private Client $client;
 
-    private const string BASE_URL = 'https://api.abacatepay.com/v1';
+    private const string BASE_URL = 'https://api.abacatepay.com/v1/';
 
     public function __construct(
         private string $token,
