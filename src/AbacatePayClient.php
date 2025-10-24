@@ -6,7 +6,7 @@ namespace AbacatePay;
 
 use AbacatePay\Billing\BillingResource;
 use AbacatePay\Customer\CustomerResource;
-use AbacatePay\WithDraw\WithDrawResource;
+use AbacatePay\Withdraw\WithdrawResource;
 use GuzzleHttp\Client;
 use PixResource;
 
@@ -43,8 +43,8 @@ final readonly class AbacatePayClient
         return new PixResource($this->client);
     }
 
-    public function withDraw(): WithDrawResource
+    public function withdraw(): WithdrawResource
     {
-        return new WithDrawResource($this->client);
+        return new WithdrawResource($this->client);
     }
 }

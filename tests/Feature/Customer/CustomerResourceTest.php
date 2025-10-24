@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 use AbacatePay\Customer\CustomerResource;
 use AbacatePay\Customer\Http\Request\CreateCustomerRequest;
+use AbacatePay\Exception\AbacatePayException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
@@ -54,10 +56,28 @@ it('should throw unauthorized exception', function () {
             'Unauthorized',
             new Request('GET', 'test-abacatepay'),
             new Response(401, [], json_encode(['error' => 'Unauthorized'], JSON_THROW_ON_ERROR))
-        )]);
+        )
+    ]);
 
     $client = new Client(['handler' => $handler]);
     $resource = new CustomerResource(client: $client);
 
-    expect(fn () => $resource->create($this->requestDto))->toThrow(\AbacatePay\Exception\AbacatePayException::class);
+    expect(fn () => $resource->create($this->requestDto))
+        ->toThrow(AbacatePayException::class, 'Token de autenticação inválido ou ausente.');
+});
+
+it('throws internal server error exception', function () {
+    $handler = new MockHandler([
+        new ServerException(
+            'Internal Server Error',
+            new Request('POST', 'test-abacatepay'),
+            new Response(500, [], json_encode(['error' => 'server crashed'], JSON_THROW_ON_ERROR))
+        )
+    ]);
+
+    $client = new Client(['handler' => $handler]);
+    $resource = new CustomerResource(client: $client);
+
+    expect(fn () => $resource->create($this->requestDto))
+        ->toThrow(AbacatePayException::class, 'Internal Server Error');
 });

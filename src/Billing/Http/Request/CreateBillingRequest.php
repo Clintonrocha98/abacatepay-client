@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace AbacatePay\Billing\Http\Request;
 
-use AbacatePay\Billing\Enum\AbacatePayBillingFrequencyEnum;
-use AbacatePay\Billing\Enum\AbacatePayBillingMethodEnum;
+use AbacatePay\Billing\Enum\BillingFrequencyEnum;
+use AbacatePay\Billing\Enum\BillingMethodEnum;
 use AbacatePay\Customer\Http\Request\CustomerRequest;
 
 final readonly class CreateBillingRequest
 {
     /**
-     * @param  AbacatePayBillingMethodEnum[]  $methods
+     * @param  BillingMethodEnum[]  $methods
      * @param  ProductRequest[]  $products
      * @param  string[]  $coupons
      */
     public function __construct(
-        public AbacatePayBillingFrequencyEnum $frequency,
+        public BillingFrequencyEnum $frequency,
         public array $methods,
         public array $products,
         public string $return_url,
