@@ -11,7 +11,7 @@ use AbacatePay\Customer\Http\Request\CustomerRequest;
 it('creates request with all fields', function () {
     $products = [
         new ProductRequest(
-            external_id: 'prod-1234',
+            externalId: 'prod-1234',
             name: 'Assinatura de Programa Fitness',
             description: 'Acesso ao programa fitness premium por 1 mês.',
             quantity: 2,
@@ -56,7 +56,7 @@ it('creates request with all fields', function () {
 it('converts to array with all fields', function () {
     $products = [
         new ProductRequest(
-            external_id: 'prod-1234',
+            externalId: 'prod-1234',
             name: 'Product Name',
             description: 'Product Description',
             quantity: 2,

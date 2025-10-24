@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Entities;
+namespace AbacatePay\Pix\Entities;
 
 use AbacatePay\Billing\Enum\BillingMethodEnum;
 use AbacatePay\Billing\Enum\BillingStatusEnum;

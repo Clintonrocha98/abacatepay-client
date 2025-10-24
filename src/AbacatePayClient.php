@@ -6,9 +6,9 @@ namespace AbacatePay;
 
 use AbacatePay\Billing\BillingResource;
 use AbacatePay\Customer\CustomerResource;
+use AbacatePay\Pix\PixResource;
 use AbacatePay\Withdraw\WithdrawResource;
 use GuzzleHttp\Client;
-use PixResource;
 
 final readonly class AbacatePayClient
 {

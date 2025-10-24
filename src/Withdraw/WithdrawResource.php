@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 final readonly class WithdrawResource
 {
-    public const string BASE_PATH = '/withdraw';
+    public const string BASE_PATH = 'withdraw';
 
     public function __construct(
         private Client $client
@@ -29,7 +29,7 @@ final readonly class WithdrawResource
     {
         try {
             $response = $this->client->post(sprintf('%s/create', self::BASE_PATH), [
-                'json' => $request->toArray(),
+                'json' => $request->jsonSerialize(),
             ]);
 
             $responsePayload = json_decode(

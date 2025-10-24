@@ -21,11 +21,11 @@ final readonly class CreateBillingRequest
         public array $products,
         public string $return_url,
         public string $completion_url,
-        public ?string $customer_id,
+        public ?string $customerId,
         public ?CustomerRequest $customer,
         public bool $allow_coupons,
         public array $coupons,
-        public ?string $external_id
+        public ?string $externalId
     ) {
     }
 
@@ -44,16 +44,16 @@ final readonly class CreateBillingRequest
             'coupons' => $this->coupons,
         ];
 
-        if ($this->customer_id !== null) {
-            $data['customerId'] = $this->customer_id;
+        if ($this->customerId !== null) {
+            $data['customerId'] = $this->customerId;
         }
 
         if ($this->customer instanceof CustomerRequest) {
             $data['customer'] = $this->customer->toArray();
         }
 
-        if ($this->external_id !== null) {
-            $data['externalId'] = $this->external_id;
+        if ($this->externalId !== null) {
+            $data['externalId'] = $this->externalId;
         }
 
         return $data;

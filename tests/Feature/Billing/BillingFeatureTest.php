@@ -56,7 +56,7 @@ it('creates billing completely', function () {
         methods: [BillingMethodEnum::Pix],
         products: [
             new ProductRequest(
-                external_id: 'prod-1234',
+                externalId: 'prod-1234',
                 name: 'Assinatura de Programa Fitness',
                 description: 'Acesso ao programa fitness premium por 1 mês.',
                 quantity: 2,
